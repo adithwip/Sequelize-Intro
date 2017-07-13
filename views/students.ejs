@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>students Data</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Jurusan</th>
+      </tr>
+      <% data_students.forEach(student => { %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.first_name %></td>
+          <td><%= student.last_name %></td>
+          <td><%= student.email %></td>
+          <td><%= student.jurusan %></td>
+        </tr>
+      <% }); %>
+    </table>
+    <br>
+    <a href="/">Home</a>
+  </body>
+</html>
