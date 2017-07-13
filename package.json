@@ -2,7 +2,7 @@
   "name": "sequelize-intro",
   "version": "1.0.0",
   "description": "Practice using Sequelize and PostgreSQL as ORM and Database for making simple CRUD Application",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/adithwip/sequelize-intro#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "nodemon": "^1.11.0",
     "pg": "^6.4.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.3.1",
