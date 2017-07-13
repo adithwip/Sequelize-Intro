@@ -15,6 +15,9 @@
       <button type="submit">Submit</button>
     </form>
     <br>
+    <% if (msg !== '') { %>
+      <span><%= msg.message %></span>
+    <% } %>
     <a href="/students">Cancel</a>
   </body>
 </html>

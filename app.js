@@ -9,6 +9,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //VIEW ENGINE //NPM INSTALL EJS ALSO
 app.set('view engine', 'ejs');
 
+//BODYPARSER
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
+
 //REQUIRE ROUTER
 var home = require('./routers/home');
 var teachers = require('./routers/teachers');

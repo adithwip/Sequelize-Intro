@@ -41,7 +41,11 @@ router.get('/edit/:id', (req, res) => {
   })
   .then(function(studentsByID) {
     res.render('students_edit', {data_studentsByID : studentsByID});
-  });
+  })
+  .catch(function(err) {
+    console.log(err);
+    res.render('students_edit', {msg : err});
+  })
 });
 
 router.post('/edit/:id', (req, res) => {
