@@ -15,7 +15,10 @@
       <!-- <input type="text" name="contact_id" placeholder="Your contact id" required> -->
       <button type="submit">Submit</button>
     </form>
+    <% if (msg !== '') { %>
+      <span><%= msg.message %></span>
+    <% } %>
     </br>
-    <a href="/profiles">Cancel</a>
+    <a href="/students">Cancel</a>
   </body>
 </html>
