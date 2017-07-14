@@ -6,17 +6,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <!-- <h4><%= JSON.stringify(data_subjects) %></h4> -->
     <table>
       <tr>
         <th>ID</th>
-        <th>Subject</th>
+        <th>Subject Name</th>
+        <th>Teachers</th>
       </tr>
+
       <% data_subjects.forEach(subject => { %>
         <tr>
           <td><%= subject.id %></td>
           <td><%= subject.subject_name %></td>
+          <td>
+          <% subject.Teachers.forEach(teacher => { %>
+            <%= teacher.first_name + ' ' + teacher.last_name %><br>
+            <% }) %>
+          </td>
         </tr>
       <% }); %>
+
     </table>
     <br>
     <a href="/">Home</a>

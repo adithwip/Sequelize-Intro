@@ -40,17 +40,31 @@ router.post('/add', (req, res) => {
 })
 
 router.get('/edit/:id', (req, res) => {
-  model.Teacher.findById(req.params.id)
+  let parsingID = req.params.id.split('_');
+
+  model.Teacher.findById(parsingID[0])
   .then(data_teachers => {
-    model.Subject.findAll()
+    model.Subject.findAll({
+      where : {
+        id : {
+          $ne: parsingID[1]
+        }
+      }
+    })
     .then(data_subjects => {
-      res.render('teachers_edit', {
-        data_teachers : data_teachers,
-        data_subjects : data_subjects
+      model.Subject.findById(parsingID[1])
+      .then(data_subjectsDefault => {
+        res.render('teachers_edit', {
+          data_teachers : data_teachers,
+          data_subjects : data_subjects,
+          data_subjectsDefault : data_subjectsDefault
+        })
       })
     })
   })
 })
+
+
 
 router.post('/edit/:id', (req, res) => {
   model.Teacher.update({
