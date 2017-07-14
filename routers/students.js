@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/add', (req, res) => {
-  res.render('students_add');
+  res.render('students_add', {msg : null});
 });
 
 router.post('/add/', (req, res) => {

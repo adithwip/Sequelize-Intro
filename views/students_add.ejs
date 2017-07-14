@@ -15,7 +15,7 @@
       <!-- <input type="text" name="contact_id" placeholder="Your contact id" required> -->
       <button type="submit">Submit</button>
     </form>
-    <% if (msg !== '') { %>
+    <% if (msg !== null) { %>
       <span><%= msg.message %></span>
     <% } %>
     </br>
