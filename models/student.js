@@ -21,3 +21,13 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Student;
 };
+
+
+isUnique: (value, next) => {
+  Student.findAndCountAll({
+    where: {
+      email : value
+    }
+  })
+  .then
+}

@@ -40,7 +40,7 @@ router.get('/edit/:id', (req, res) => {
     }
   })
   .then(function(studentsByID) {
-    res.render('students_edit', {data_studentsByID : studentsByID});
+    res.render('students_edit', {data_studentsByID : studentsByID, msg : null});
   })
   .catch(function(err) {
     console.log(err);
