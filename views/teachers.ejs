@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teachers Data</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+      <% data_teachers.forEach(teacher => { %>
+        <tr>
+          <td><%= teacher.id %></td>
+          <td><%= teacher.first_name %></td>
+          <td><%= teacher.last_name %></td>
+          <td><%= teacher.email %></td>
+        </tr>
+      <% }); %>
+    </table>
+    <br>
+    <a href="/">Home</a>
+  </body>
+</html>
