@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Students Add</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      </br>
+      <form action="/teachers/add" method="post">
+      <input type="text" name="first_name" placeholder="Teacher firstname" required>
+      <input type="text" name="last_name" placeholder="Teacher lastname" required>
+      <input type="text" name="email" placeholder="Teacher email" required>
+      <!-- <input type="text" name="SubjectId" placeholder="Student jurusan" required> -->
+      <!-- <input type="text" name="contact_id" placeholder="Your contact id" required> -->
+
+      <select name="SubjectId">
+        <option value="">Choose subject to assign</option>
+        <% data_subjects.forEach(subject => { %>
+          <option value="<%= subject.id %>"><%= subject.subject_name %></option>
+        <% }) %>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+    <% if (msg !== null) { %>
+      <span><%= msg.message %></span>
+    <% } %>
+    </br>
+    <a href="/students">Cancel</a>
+  </body>
+</html>
