@@ -27,7 +27,7 @@
             <% } else { %>
               <td><%= teacher.Subject.subject_name %></td>
             <% } %>
-          <td><a href="/teachers/edit/<%= teacher.id %>">Edit</a> <a href="/teachers/delete/<%= teacher.id %>" onclick="return confirm('Are you sure want to delete this data?')">Delete</a></td>
+          <td><a href="/teachers/edit/<%= teacher.id %>_<%= teacher.Subject.id %>">Edit</a> <a href="/teachers/delete/<%= teacher.id %>" onclick="return confirm('Are you sure want to delete this data?')">Delete</a></td>
         </tr>
       <% }); %>
     </table>
