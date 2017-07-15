@@ -15,6 +15,70 @@ router.get('/', (req, res) => {
 });
 
 
+router.get('/:id/enrolledstudents', (req, res) => {
+  model.Subject.findById(req.params.id)
+  .then(subject => {
+    model.StudentSubject.findAll({
+      where: {
+        SubjectId: req.params.id
+      },
+      include: [model.Student]
+    })
+    .then(StuSub => {
+      res.render('subjects_enrolledstudents', {
+        title_subject : subject,
+        data_students: StuSub
+      });
+      // res.send(StuSub);
+    })
+  })
+
+  router.get('/givescore/:idst/:idsb', (req, res) => {
+    model.Student.findAll({
+      where: {
+        id: req.params.idst
+      }
+    })
+    .then(data_students => {
+      model.Subject.findAll({
+        where: {
+          id: req.params.idsb
+        }
+      })
+      .then(data_subjects => {
+        res.render('subjects_givescore', {
+          data_students: data_students,
+          data_subjects: data_subjects
+        })
+      })
+    })
+  })
+
+  router.post('/givescore/:idst/:idsb', (req, res) => {
+    model.StudentSubject.update({
+      score: req.body.score
+    }, {
+      where: {
+        StudentId: req.params.idst
+      }
+    })
+    .then(() => {
+      res.redirect(`/subjects/${req.params.idsb}/enrolledstudents`)
+    })
+  })
+
+  // model.StudentSubject.findAll({
+  //   where: {
+  //     SubjectId: req.params.id
+  //   },
+  //   include: [{ all: true }]
+  // })
+  // .then(result => {
+  //   res.render('test', {data: result})
+  // })
+
+})
+
 module.exports = router;
 
 
