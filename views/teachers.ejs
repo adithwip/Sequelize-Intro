@@ -3,24 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Teachers Data</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
-    <a href="/teachers/add">Add Teacher</a>
-    <table>
+    <h1>TEACHERS DATA</h1>
+    <a class="btn btn-primary" href="/teachers/add" role="button">Add Teacher</a>
+    <table class="table table-condensed">
       <tr>
-        <th>ID</th>
+        <th>No</th>
         <th>Firstname</th>
         <th>Lastname</th>
+        <th>Unique ID</th>
         <th>Email</th>
         <th>Subject</th>
         <th>Actions</th>
       </tr>
+      <% var id = 1 %>
       <% data_teachers.forEach(teacher => { %>
         <tr>
-          <td><%= teacher.id %></td>
+          <td><%= id++ %></td>
           <td><%= teacher.first_name %></td>
           <td><%= teacher.last_name %></td>
+          <td><%= teacher.id %></td>
           <td><%= teacher.email %></td>
             <% if (teacher.SubjectId == undefined) { %>
               <td>Unassigned</td>
@@ -32,6 +37,7 @@
       <% }); %>
     </table>
     <br>
-    <a href="/">Home</a>
+    <a class="btn btn-primary" href="/" role="button">Home</a>
   </body>
+
 </html>

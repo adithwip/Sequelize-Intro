@@ -6,7 +6,8 @@ const model = require('../models');
 
 router.get('/', (req, res) => {
   model.Teacher.findAll({
-    include : [model.Subject]
+    include : [model.Subject],
+    order: [['first_name', 'ASC']]
   })
   .then(function(teachers) {
     console.log(teachers);
@@ -30,9 +31,9 @@ router.get('/add', (req, res) => {
 
 router.post('/add', (req, res) => {
   model.Teacher.create({
-    first_name : req.body.first_name,
-    last_name : req.body.last_name,
-    email : req.body.email,
+    first_name : req.body.first_name || 0,
+    last_name : req.body.last_name || 0,
+    email : req.body.email || 0,
     SubjectId : req.body.SubjectId || 0
   })
   .then(success => {
