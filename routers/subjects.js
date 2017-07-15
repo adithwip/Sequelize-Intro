@@ -19,6 +19,7 @@ router.get('/:id/enrolledstudents', (req, res) => {
   model.Subject.findById(req.params.id)
   .then(subject => {
     model.StudentSubject.findAll({
+      order: [['Student', 'first_name', 'ASC']],
       where: {
         SubjectId: req.params.id
       },
