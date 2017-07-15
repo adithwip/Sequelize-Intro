@@ -12,13 +12,14 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     jurusan: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Student.associate = (models) => {
+    Student.belongsToMany(models.Subject, {
+      through: 'StudentSubjects'
+    })
+  }
+
   return Student;
 };
 

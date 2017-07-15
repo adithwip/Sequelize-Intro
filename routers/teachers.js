@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     include : [model.Subject]
   })
   .then(function(teachers) {
+    console.log(teachers);
     res.render('teachers', {data_teachers : teachers});
   });
 });
@@ -32,7 +33,7 @@ router.post('/add', (req, res) => {
     first_name : req.body.first_name,
     last_name : req.body.last_name,
     email : req.body.email,
-    SubjectId : req.body.SubjectId
+    SubjectId : req.body.SubjectId || 0
   })
   .then(success => {
     res.redirect('/teachers')
