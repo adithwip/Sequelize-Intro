@@ -5,6 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     SubjectId: DataTypes.INTEGER
   });
 
+  StudentSubject.associate = (models) => {
+    StudentSubject.belongsTo(models.Student);
+    StudentSubject.belongsTo(models.Subject);
+  }
 
   return StudentSubject;
 };
