@@ -4,6 +4,14 @@ const express = require('express');
 const router = express.Router();
 const model = require('../models');
 
+router.use((req, res, next) => {
+  if (req.session.role == 'headmaster' || req.session.role == 'teacher' || req.session.role == 'academic') {
+    next()
+  } else {
+    res.send('Login lah sebagai headmaster, academic, atau teacher')
+  }
+})
+
 router.get('/', (req, res) => {
   model.Student.findAll({
     order: [['first_name', 'ASC']]
@@ -13,7 +21,8 @@ router.get('/', (req, res) => {
       pagetitle: 'Students Data',
       h1: 'STUDENTS DATA',
       dropdownmenu: 'Add Students',
-      linkdropdown: '/students/add'
+      linkdropdown: '/students/add',
+      session: req.session.user
     });
   });
 });

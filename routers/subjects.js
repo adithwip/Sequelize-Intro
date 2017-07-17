@@ -5,6 +5,14 @@ const router = express.Router();
 const model = require('../models');
 const helper = require('../helpers/scoreToText');
 
+router.use((req, res, next) => {
+  if (req.session.role == 'headmaster' || req.session.role == 'academic') {
+    next()
+  } else {
+    res.send('Login lah sebagai headmaster atau academic')
+  }
+})
+
 router.get('/', (req, res) => {
   model.Subject.findAll({
     include: [model.Teacher]
@@ -15,7 +23,8 @@ router.get('/', (req, res) => {
       pagetitle: 'Subjects Data',
       h1: 'SUBJECTS DATA',
       dropdownmenu: 'Add Subjects to Students',
-      linkdropdown: '/students'
+      linkdropdown: '/students',
+      session: req.session.user
     })
     // res.send(data_subjects_teachers);
   })
