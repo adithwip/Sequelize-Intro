@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models');
+const helper = require('../helpers/scoreToText');
 
 router.get('/', (req, res) => {
   model.Subject.findAll({
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:id/enrolledstudents', (req, res) => {
+
   model.Subject.findById(req.params.id)
   .then(subject => {
     model.StudentSubject.findAll({
@@ -32,6 +34,9 @@ router.get('/:id/enrolledstudents', (req, res) => {
       include: [model.Student]
     })
     .then(StuSub => {
+      // console.log(StuSub);
+      StuSub = helper(StuSub);
+      console.log(StuSub);
       res.render('subjects_enrolledstudents', {
         title_subject : subject,
         data_students: StuSub

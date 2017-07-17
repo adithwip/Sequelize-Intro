@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const app = express();
 
 //PATH
@@ -19,9 +20,28 @@ var teachers = require('./routers/teachers');
 var subjects = require('./routers/subjects');
 var students = require('./routers/students');
 
+app.use(session({
+  secret: 'hacktiv8',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {}
+}))
+
+//ROUTE THAT DON'T NEED LOGIN
+app.use('/', home);
+
+app.use((req, res, next) => {
+  if (req.session.user) {
+    next()
+  } else {
+    res.render('login', {
+      pagetitle: 'Login Session',
+      msg: 'Login first'
+    })
+  }
+})
 
 //ROUTER USE
-app.use('/', home);
 app.use('/teachers', teachers);
 app.use('/subjects', subjects);
 app.use('/students', students);

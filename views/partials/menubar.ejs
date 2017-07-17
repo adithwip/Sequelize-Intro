@@ -19,18 +19,13 @@
             <li><a href="/students">Students</a></li>
             <li><a href="/subjects">Subjects</a></li>
             <li><a href="/teachers">Teachers</a></li>
-            <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="https://www.youtube.com/watch?v=aRsWk4JZa5k" aria-expanded="false" aria-controls="nav-collapse1">Surprise</a>
-            </li>
+            <% if (!session) { %>
+                <li><a href="/login">Login</a></li>
+            <% } else { %>
+              <li><a href="/logout">Logout</a></li>
+            <% } %>
           </ul>
-          <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
-            <li><a href="#">Web design</a></li>
-            <li><a href="#">Development</a></li>
-            <li><a href="#">Graphic design</a></li>
-            <li><a href="#">Print</a></li>
-            <li><a href="#">Motion</a></li>
-            <li><a href="#">Mobile apps</a></li>
-          </ul>
+
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
@@ -44,4 +39,5 @@
      <li role="presentation"><a role="menuitem" tabindex="-1" href="/">Back home</a></li>
    </ul>
  </div>
+
 </div><!-- /.container-fluid -->
