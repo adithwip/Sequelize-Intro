@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
     h1: 'HOME',
     dropdownmenu: ' ',
     linkdropdown: ' ',
-    session: req.session.user
+    session: req.session.user,
+    session_role: req.session.role
   });
 });
 

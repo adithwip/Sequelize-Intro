@@ -16,9 +16,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/students">Students</a></li>
+            <!-- MENU PER ROLE -->
+            <% if (session_role == 'teacher' || session_role == 'headmaster' || session_role == 'academic') { %>
+              <li><a href="/students">Students</a></li>
+            <% } %>
+
+            <% if (session_role == 'academic' || session_role == 'headmaster') { %>
             <li><a href="/subjects">Subjects</a></li>
+            <% } %>
+
+            <% if (session_role == 'headmaster') { %>
             <li><a href="/teachers">Teachers</a></li>
+            <% } %>
+
             <% if (!session) { %>
                 <li><a href="/login">Login</a></li>
             <% } else { %>

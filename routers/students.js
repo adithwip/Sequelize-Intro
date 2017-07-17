@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
       h1: 'STUDENTS DATA',
       dropdownmenu: 'Add Students',
       linkdropdown: '/students/add',
-      session: req.session.user
+      session: req.session.user,
+      session_role: req.session.role
     });
   });
 });

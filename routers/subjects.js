@@ -24,7 +24,8 @@ router.get('/', (req, res) => {
       h1: 'SUBJECTS DATA',
       dropdownmenu: 'Add Subjects to Students',
       linkdropdown: '/students',
-      session: req.session.user
+      session: req.session.user,
+      session_role: req.session.role
     })
     // res.send(data_subjects_teachers);
   })

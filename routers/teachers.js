@@ -25,7 +25,8 @@ router.get('/', (req, res) => {
       h1: 'TEACHERS DATA',
       dropdownmenu: 'Add Teacher',
       linkdropdown: '/teachers/add',
-      session: req.session.user
+      session: req.session.user,
+      session_role: req.session.role
     });
   });
 });
