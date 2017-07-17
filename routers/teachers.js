@@ -4,6 +4,14 @@ const express = require('express');
 const router = express.Router();
 const model = require('../models');
 
+router.use((req, res, next) => {
+  if (req.session.role == 'headmaster') {
+    next()
+  } else {
+    res.send('Login lah sebagai headmaster')
+  }
+})
+
 router.get('/', (req, res) => {
   model.Teacher.findAll({
     include : [model.Subject],
@@ -11,7 +19,15 @@ router.get('/', (req, res) => {
   })
   .then(function(teachers) {
     console.log(teachers);
-    res.render('teachers', {data_teachers : teachers});
+    res.render('teachers', {
+      data_teachers : teachers,
+      pagetitle: 'Teachers Data',
+      h1: 'TEACHERS DATA',
+      dropdownmenu: 'Add Teacher',
+      linkdropdown: '/teachers/add',
+      session: req.session.user,
+      session_role: req.session.role
+    });
   });
 });
 

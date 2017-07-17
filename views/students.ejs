@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>students Data</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <%- include ./partials/head %>
   </head>
   <body>
+    <header>
+      <%- include ./partials/menubar %>
+    </header>
+
     <h1>STUDENTS DATA</h1>
-    <a class="btn btn-primary" href="/students/add" role="button">Add Student</a>
     <br>
     <table class="table table-condensed">
       <tr>
@@ -36,6 +36,5 @@
       <% }); %>
     </table>
     <br>
-    <a class="btn btn-primary" href="/" role="button">Home</a>
   </body>
 </html>

@@ -3,19 +3,37 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models');
+const helper = require('../helpers/scoreToText');
+
+router.use((req, res, next) => {
+  if (req.session.role == 'headmaster' || req.session.role == 'academic') {
+    next()
+  } else {
+    res.send('Login lah sebagai headmaster atau academic')
+  }
+})
 
 router.get('/', (req, res) => {
   model.Subject.findAll({
     include: [model.Teacher]
   })
   .then(data_subjects_teachers => {
-    res.render('subjects', {data_subjects : data_subjects_teachers})
+    res.render('subjects', {
+      data_subjects : data_subjects_teachers,
+      pagetitle: 'Subjects Data',
+      h1: 'SUBJECTS DATA',
+      dropdownmenu: 'Add Subjects to Students',
+      linkdropdown: '/students',
+      session: req.session.user,
+      session_role: req.session.role
+    })
     // res.send(data_subjects_teachers);
   })
 });
 
 
 router.get('/:id/enrolledstudents', (req, res) => {
+
   model.Subject.findById(req.params.id)
   .then(subject => {
     model.StudentSubject.findAll({
@@ -26,6 +44,9 @@ router.get('/:id/enrolledstudents', (req, res) => {
       include: [model.Student]
     })
     .then(StuSub => {
+      // console.log(StuSub);
+      StuSub = helper(StuSub);
+      console.log(StuSub);
       res.render('subjects_enrolledstudents', {
         title_subject : subject,
         data_students: StuSub

@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
-    <!-- <h4><%= JSON.stringify(data_students) %></h4> -->
+
+
+    <h4><%= JSON.stringify(data_students) %></h4>
     <center><h1><%= title_subject.subject_name %></h1></center>
     <div class="col-md-4 col-md-offset-4">
       <table class="table table-striped">
@@ -14,19 +16,21 @@
           <th>No</th>
           <th>Name</th>
           <th>Score</th>
+          <th>Score by Letter</th>
         </tr>
         <% var id = 1 %>
         <% data_students.forEach(student => { %>
           <tr>
             <td><%= id++ %></td>
             <td><%= student.Student.first_name + ' ' + student.Student.last_name %></td>
-            <td>
+
               <% if (student.score == undefined) { %>
               <td><a href="/subjects/givescore/<%= student.StudentId %>/<%= student.SubjectId %>">Give Score</a></td>
+              <td><%= student.score_letter %></td>
             <% } else { %>
               <td><%= student.score %></td>
-            <% } %>
-          </td>
+              <td><%= student.score_letter %></td>
+              <% } %>
           </tr>
         <% }) %>
       </table>
