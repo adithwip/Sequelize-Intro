@@ -9,7 +9,11 @@ router.get('/', (req, res) => {
     order: [['first_name', 'ASC']]
   }).then(function(students) {
     res.render('students', {
-      data_students: students
+      data_students: students,
+      pagetitle: 'Students Data',
+      h1: 'STUDENTS DATA',
+      dropdownmenu: 'Add Students',
+      linkdropdown: '/students/add'
     });
   });
 });

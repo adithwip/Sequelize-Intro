@@ -11,7 +11,13 @@ router.get('/', (req, res) => {
   })
   .then(function(teachers) {
     console.log(teachers);
-    res.render('teachers', {data_teachers : teachers});
+    res.render('teachers', {
+      data_teachers : teachers,
+      pagetitle: 'Teachers Data',
+      h1: 'TEACHERS DATA',
+      dropdownmenu: 'Add Teacher',
+      linkdropdown: '/teachers/add'
+    });
   });
 });
 

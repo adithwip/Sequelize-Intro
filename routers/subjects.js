@@ -9,7 +9,13 @@ router.get('/', (req, res) => {
     include: [model.Teacher]
   })
   .then(data_subjects_teachers => {
-    res.render('subjects', {data_subjects : data_subjects_teachers})
+    res.render('subjects', {
+      data_subjects : data_subjects_teachers,
+      pagetitle: 'Subjects Data',
+      h1: 'SUBJECTS DATA',
+      dropdownmenu: 'Add Subjects to Students',
+      linkdropdown: '/students'
+    })
     // res.send(data_subjects_teachers);
   })
 });
