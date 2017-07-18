@@ -5,8 +5,8 @@
     <title>Edit Teachers</title>
   </head>
   <body>
-       <h5> <%= JSON.stringify(data_teachers) %></h5>
-       <h5> <%= JSON.stringify(data_subjects) %></h5>
+       <!-- <h5> <%= JSON.stringify(data_teachers) %></h5>
+       <h5> <%= JSON.stringify(data_subjects) %></h5> -->
       <form action="/teachers/edit/:<%= data_teachers.id %>" method="post">
       <input type="hidden" name="id" placeholder="ID" value="<%= data_teachers.id %>">
       <input type="text" name="first_name" placeholder="Your firstname" value="<%= data_teachers.first_name %>">
