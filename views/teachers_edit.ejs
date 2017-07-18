@@ -13,7 +13,7 @@
       <input type="text" name="last_name" placeholder="Your lastname" value="<%= data_teachers.last_name %>">
       <input type="text" name="email" placeholder="Your email" value="<%= data_teachers.email %>">
       <select name="SubjectId">
-        <option value="<%= data_teachers.SubjectId %>"><%= data_subjectsDefault.subject_name %></option>
+        <option value="<%= data_teachers.SubjectId %>"><%= data_subjects[(data_teachers.SubjectId-1)].subject_name %></option>
         <% data_subjects.forEach(subject => { %>
           <option value="<%= subject.id %>"><%= subject.subject_name %></option>
         <% }) %>

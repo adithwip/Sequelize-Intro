@@ -47,10 +47,10 @@ router.get('/add', (req, res) => {
 
 router.post('/add', (req, res) => {
   model.Teacher.create({
-    first_name : req.body.first_name || 0,
-    last_name : req.body.last_name || 0,
-    email : req.body.email || 0,
-    SubjectId : req.body.SubjectId || 0
+    first_name : req.body.first_name,
+    last_name : req.body.last_name,
+    email : req.body.email,
+    SubjectId : req.body.SubjectId || null
   })
   .then(success => {
     res.redirect('/teachers')
@@ -62,13 +62,7 @@ router.get('/edit/:id', (req, res) => {
 
   model.Teacher.findById(parsingID[0])
   .then(data_teachers => {
-    model.Subject.findAll({
-      where : {
-        id : {
-          $ne: parsingID[1]
-        }
-      }
-    })
+    model.Subject.findAll()
     .then(data_subjects => {
       model.Subject.findById(parsingID[1])
       .then(data_subjectsDefault => {
