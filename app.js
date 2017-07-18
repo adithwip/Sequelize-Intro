@@ -48,6 +48,6 @@ app.use('/students', students);
 
 
 //LISTEN PORT
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log('im listening on 3000');
 });
