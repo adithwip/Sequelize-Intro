@@ -122,8 +122,16 @@ router.get('/delete/:id', (req, res) => {
       }
     })
     .then(function(rows) {
-      res.redirect('/students')
+      model.StudentSubject.destroy({
+        where: {
+          StudentId: req.params.id
+        }
+      })
+      .then(function(row) {
+        res.redirect('/students')
+      })
     })
 })
+
 
 module.exports = router;
