@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models');
+const hash = require('../helpers/crypto');
 
 router.get('/', (req, res) => {
   res.render('index', {
@@ -29,13 +30,30 @@ router.post('/login', (req, res) => {
     }
   })
   .then(session => {
-    if (session && session.password === req.body.password) {
+    let passwordEncrypted = hash(req.body.password, session.secret);
+    if (session.password === req.body.password || session.password === passwordEncrypted) {
       req.session.user = session.username,
       req.session.role = session.role
       res.redirect('/')
     } else {
       res.send('User not found')
     }
+  })
+})
+
+router.get('/signup', (req, res) => {
+  res.render('signup', {
+    pagetitle: 'Signup Session'
+  })
+})
+
+router.post('/signup', (req, res) => {
+  model.User.create({
+    username: req.body.username,
+    password: req.body.password
+  })
+  .then(() => {
+    res.redirect('/');
   })
 })
 

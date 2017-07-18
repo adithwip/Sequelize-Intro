@@ -18,6 +18,18 @@ module.exports = {
       role: 'headmaster',
       createdAt: new Date(),
       updatedAt: new Date()
+    }, {
+      username: 'johndoe',
+      password: 'foobar',
+      role: 'teacher',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      username: 'pakdengklek',
+      password: 'gogetgold',
+      role: 'academic',
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 
