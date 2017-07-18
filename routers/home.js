@@ -42,15 +42,20 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-  res.render('signup', {
-    pagetitle: 'Signup Session'
+  model.Role.findAll()
+  .then(roles => {
+    res.render('signup', {
+      data_roles: roles,
+      pagetitle: 'Signup Session'
+    })
   })
 })
 
 router.post('/signup', (req, res) => {
   model.User.create({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    role: req.body.role
   })
   .then(() => {
     res.redirect('/');
