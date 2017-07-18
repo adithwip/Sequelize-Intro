@@ -12,7 +12,10 @@
 
   <div class="container">
     <div class="jumbotron">
-      <h1>Welcome to Sekolah Budhi Pelangi!</h1>
+
+      <% if (session_role == 'teacher' || session_role == 'headmaster' || session_role == 'academic') { %>
+      <h1>Hi, <%= session %>! Welcome to Sekolah Budhi Pelangi!</h1>
+      <% } %>
       <p>This simple dashboard will guide you to choose and do something with the data, as long as you have autorhized to do it</p>
     </div>
   </div>
