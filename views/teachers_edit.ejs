@@ -5,15 +5,20 @@
     <title>Edit Teachers</title>
   </head>
   <body>
-       <!-- <h3> <%= JSON.stringify(data_teachers) %></h3>
-       <h3> <%= JSON.stringify(data_subjects) %></h3> -->
+       <h5> <%= JSON.stringify(data_teachers) %></h5>
+       <h5> <%= JSON.stringify(data_subjects) %></h5>
       <form action="/teachers/edit/:<%= data_teachers.id %>" method="post">
       <input type="hidden" name="id" placeholder="ID" value="<%= data_teachers.id %>">
       <input type="text" name="first_name" placeholder="Your firstname" value="<%= data_teachers.first_name %>">
       <input type="text" name="last_name" placeholder="Your lastname" value="<%= data_teachers.last_name %>">
       <input type="text" name="email" placeholder="Your email" value="<%= data_teachers.email %>">
       <select name="SubjectId">
-        <option value="<%= data_teachers.SubjectId %>"><%= data_subjects[(data_teachers.SubjectId-1)].subject_name %></option>
+
+        <% if (data_teachers.SubjectId == undefined) { %>
+          <option value="">Assign subject</option>
+        <% } else { %>
+          <option value="<%= data_teachers.SubjectId %>"><%= data_subjects[(data_teachers.SubjectId-1)].subject_name %></option>
+        <% } %>
         <% data_subjects.forEach(subject => { %>
           <option value="<%= subject.id %>"><%= subject.subject_name %></option>
         <% }) %>

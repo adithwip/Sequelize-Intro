@@ -58,13 +58,12 @@ router.post('/add', (req, res) => {
 })
 
 router.get('/edit/:id', (req, res) => {
-  let parsingID = req.params.id.split('_');
 
-  model.Teacher.findById(parsingID[0])
+  model.Teacher.findById(req.params.id)
   .then(data_teachers => {
     model.Subject.findAll()
     .then(data_subjects => {
-      model.Subject.findById(parsingID[1])
+      model.Subject.findById(req.params.id)
       .then(data_subjectsDefault => {
         res.render('teachers_edit', {
           data_teachers : data_teachers,
